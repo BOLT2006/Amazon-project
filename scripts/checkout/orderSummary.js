@@ -4,8 +4,8 @@ import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions , getDileveryOption } from "../../data/deliveryOptions.js";
+import { renderpaymentSummary } from "./paymentSummary.js";
 
-hello();
 
 function deliveryOptionHTML(matchingProduct, cartItem) {
   let html = "";
@@ -129,6 +129,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
       removeFromCart(productId);
+      renderpaymentSummary();
       renderOrderSummary();
     });
   });
@@ -138,6 +139,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderpaymentSummary();
     });
   });
 }
