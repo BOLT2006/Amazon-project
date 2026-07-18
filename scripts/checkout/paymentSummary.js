@@ -1,9 +1,9 @@
 import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
-import { getDileveryOption } from "../../data/deliveryOptions.js";
-import formatCurrency from "../utils/money.js";
+import { getDeliveryOption } from "../../data/deliveryOptions.js";
+import { formatCurrency } from "../utils/money.js";
 
-export function renderpaymentSummary() {
+export function renderPaymentSummary() {
   let productPriceCents = 0;
   let shippingPriceCents = 0;
 
@@ -11,7 +11,7 @@ export function renderpaymentSummary() {
     const product = getProduct(cartItem.productId);
 
     productPriceCents += product.priceCents * cartItem.quantity;
-    const deliveryOption = getDileveryOption(cartItem.deliveryOptionId);
+    const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
     shippingPriceCents += deliveryOption.priceCents;
   });
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
